@@ -1,0 +1,6 @@
+server {
+        listen 127.0.0.1:8085;
+        root /srv/gallery.hackeriet.no/html/;
+        server_name gallery.hackeriet.no;
+}
+

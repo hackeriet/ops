@@ -1,0 +1,69 @@
+check host hackeriet-blix with address 185.35.202.73
+  if failed ping then alert
+check host hackeriet-link with address 185.35.202.74
+  if failed ping then alert
+check host hackeriet-gw   with address 185.35.202.193
+  if failed ping then alert
+
+check host zerocool with address zerocool.hackeriet.no
+  if failed ping then unmonitor
+  if failed port 22 protocol ssh  with timeout 15 seconds then unmonitor
+
+check host nikon with address nikon.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh  with timeout 15 seconds then alert
+  if failed port 25 protocol smtp with timeout 15 seconds then alert
+  #if failed port 443 type TCPSSL protocol http with timeout 15 seconds then alert
+  if failed port 80 protocol http
+    #and request /path with content = "a string"
+  then alert
+  if failed port 113 type tcp with timeout 15 seconds then alert
+  if failed port 7902 type tcp with timeout 15 seconds then alert
+
+check host hackeriet.no with address hackeriet.no
+  if failed ping then alert
+  if failed port 443 type TCPSSL protocol http with timeout 15 seconds then alert
+  if failed port 80 protocol http then alert
+
+check host projects.hackeriet.no with address projects.hackeriet.no
+  if failed port 443 type TCPSSL protocol http with timeout 15 seconds then alert
+  if failed port 80 protocol http then alert
+ 
+check host mail.hackeriet.no with address mail.hackeriet.no
+  if failed ping then alert
+  if failed port 25 protocol smtp with timeout 15 seconds then alert
+
+
+check host lafa/plague.hackeriet.no with address plague.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+check host scn/metasploit.hackeriet.no with address metasploit.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+check host scn/wasp.hackeriet.no with address wasp.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+check host huyara/tepeblah.hackeriet.no with address tepewqukumatz.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+check host atluxity/pavel.hackeriet.no with address pavel.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+check host blade.hackeriet.no with address blade.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+check host capitol/tone.hackeriet.no with address tone.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+check host cereal.hackeriet.no with address cereal.hackeriet.no
+  if failed ping then alert
+  if failed port 22 protocol ssh with timeout 15 seconds then alert
+
+

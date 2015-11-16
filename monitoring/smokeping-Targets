@@ -1,0 +1,93 @@
+*** Targets ***
+
+probe = FPing
+
+menu = Top
+title = Network Latency Grapher
+remark = Welcome to the SmokePing website of xxx Company. \
+         Here you will learn all about the latency of our network.
+
++ Local
+
+menu = Local
+title = Local Network
+#parents = owner:/Test/James location:/
+
+++ LocalMachine
+
+menu = Local Machine
+title = This host
+host = localhost
+#alerts = someloss
+
++ hackeriet
+menu = Hackeriet
+title = Hackeriet hosts
+
+++ hackeriet
+host = hackeriet.no
+
+++ hackeriet-gw
+host = gw.link.hackeriet.no
+
+++ hackeriet-link
+host = hackeriet.link.hackeriet.no
+
+++ hackeriet-blix
+host = blix.link.hackeriet.no
+
+++ zerocool
+host = zerocool.hackeriet.no
+
+++ nikon
+host = nikon.hackeriet.no
+
+++ projects
+host = projects.hackeriet.no
+
+++ mail
+host = mail.hackeriet.no
+
+++ blade
+host = blade.hackeriet.no
+
+++ cereal
+host = cereal.hackeriet.no
+
+++ kx
+host = kx.haus.hackeriet.no
+
+++ hole-sw
+host = hole-sw.hackeriet.no
+
+++ haus-core-sw
+host = haus-core-sw.haus.hackeriet.no
+
+++ hackeriet-sw
+host = hackeriet-sw.haus.hackeriet.no
+
+++ haus-2etg-sw
+host = haus-2etg-sw.haus.hackeriet.no
+
+++ haus-3etg-sw
+host = haus-3etg-sw.haus.hackeriet.no
+
+++ haus-4etg-sw
+host = haus-4etg-sw.haus.hackeriet.no
+
+++ haus-musikk-sw
+host = haus-3etg-sw.haus.hackeriet.no
+
++ delta9
+++ delta9.pl
+host = delta9.pl
+
+++ chodor
+host = chodor.delta9.pl
+
+++ tiberius
+host = tiberius.delta9.pl
+
+++ newscum
+host = newscum.delta9.pl
+

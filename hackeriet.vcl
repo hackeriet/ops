@@ -3,16 +3,17 @@ backend nginx {
     .port = "8001";
 }
 
+backend nginx_gallery { .host = "127.0.0.1"; .port = "8085"; }
+
+backend uwsgi_hackeradmin {
+    .host = "127.0.0.1";
+    .port = "8002";
+}
+
 backend oldweb {
     .host = "31.185.27.119";
     .port = "80";
 }
-
-backend meetupapi {
-    .host = "190.93.245.216";
-}
-
-
 
 backend door {
     .host = "door.hackeriet.no";
@@ -26,13 +27,6 @@ sub vcl_recv {
             return(pass);
         }
         if (req.http.host ~ "^hackeriet\.no") {
-            if(req.url ~ "meetup.json") {
-                set req.url = "/2/events?offset=0&format=json&limited_events=False&group_urlname=hackeriet&photo-host=public&time=0d%2C1m&page=500&fields=&order=time&status=upcoming&desc=false&sig_id=89312252&sig=08383e6376d49121d671a67b602b62f80a0fb6ac";
-                set req.http.host = "api.meetup.com";
-                set req.backend_hint = meetupapi;
-                return (hash);
-            }
-
             # redirect human friendly links
             if(req.url ~ "\.(login|edit)$"){
                 return(synth(750, "http://oldwww.hackeriet.no" + req.url));
@@ -77,15 +71,16 @@ sub vcl_recv {
                 return(synth(750, "https://hackeriet.no/projects/hackeriet/wiki/CoolStuffWeHave"));
             }
 
+            if (req.url ~ "^/hackeradmin") {
+                set req.backend_hint = uwsgi_hackeradmin;
+		return(pass);
+            }
+	    else if (req.http.host ~ "gallery.hackeriet.no" ) {
+                set req.backend_hint = nginx_gallery;
+	    }
             # redmine owns the following subfolders
-            if(req.url ~ "^/(projects|admin|javascripts|themes|plugin_assets|stylesheets|images)"){
+            else if (req.url ~ "^/(projects|admin|javascripts|themes|plugin_assets|stylesheets|images|login)"){
                 set req.backend_hint = redmine;
-
-            } elsif (req.url ~ "^/$"){
-
-                # rewrite front page to redmine
-                set req.backend_hint = redmine;
-
             } else {
                 # load everything else from web server
                 set req.backend_hint = nginx;

@@ -79,7 +79,7 @@ host = haus-4etg-sw.haus.hackeriet.no
 host = haus-3etg-sw.haus.hackeriet.no
 
 + delta9
-++ delta9.pl
+++ delta9-web
 host = delta9.pl
 
 ++ chodor
